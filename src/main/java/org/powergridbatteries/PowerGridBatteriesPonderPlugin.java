@@ -9,12 +9,11 @@ public class PowerGridBatteriesPonderPlugin implements PonderPlugin {
     @Override
     public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         helper.forComponents(
-                ModBlocks.COPPER_BATTERY.getId(),
-                ModBlocks.IRON_BATTERY.getId(),
-                ModBlocks.GOLD_BATTERY.getId(),
-                ModBlocks.DIAMOND_BATTERY.getId(),
-                ModBlocks.NETHERITE_BATTERY.getId()
-        ).addStoryBoard("battery", DeviceScenes::battery);
+                ModBlocks.SMALL_BATTERY.getId(),
+                ModBlocks.MEDIUM_BATTERY.getId(),
+                ModBlocks.HIGH_VOLTAGE_BATTERY.getId(),
+                ModBlocks.SUBSTATION_BATTERY.getId()
+        ).addStoryBoard("battery", (scene, util) -> DeviceScenes.battery(scene, util));
     }
 
     @Override

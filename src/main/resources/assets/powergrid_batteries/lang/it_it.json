@@ -1,8 +1,11 @@
 {
   "itemGroup.powergrid_batteries": "Batterie Power Grid",
-  "block.powergrid_batteries.copper_battery": "Batteria al Rame",
-  "block.powergrid_batteries.iron_battery": "Batteria al Ferro",
-  "block.powergrid_batteries.gold_battery": "Batteria all'Oro",
-  "block.powergrid_batteries.diamond_battery": "Batteria al Diamante",
-  "block.powergrid_batteries.netherite_battery": "Batteria in Netherite"
+  "block.powergrid_batteries.small_battery": "Batteria Piccola",
+  "block.powergrid_batteries.medium_battery": "Batteria Media",
+  "block.powergrid_batteries.high_voltage_battery": "Batteria ad Alta Tensione",
+  "block.powergrid_batteries.substation_battery": "Sottostazione Power Grid",
+  "gui.battery.info_header": "Stato della Batteria",
+  "gui.battery.charge": "Livello di Carica:",
+  "gui.battery.voltage": "Tensione d'Uscita:",
+  "gui.battery.temperature": "Temperatura Interna:"
 }

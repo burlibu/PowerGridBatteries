@@ -1,0 +1,18 @@
+# Gradle cache & build folders
+.gradle/
+build/
+run/
+out/
+bin/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs & temp files
+*.log
+.DS_Store
+Thumbs.db

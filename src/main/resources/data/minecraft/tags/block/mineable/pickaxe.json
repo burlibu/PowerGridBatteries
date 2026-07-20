@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "powergrid_batteries:small_battery",
+    "powergrid_batteries:medium_battery",
+    "powergrid_batteries:high_voltage_battery",
+    "powergrid_batteries:substation_battery"
+  ]
+}

@@ -1,8 +1,11 @@
 {
   "itemGroup.powergrid_batteries": "Power Grid Batteries",
-  "block.powergrid_batteries.copper_battery": "Copper Battery",
-  "block.powergrid_batteries.iron_battery": "Iron Battery",
-  "block.powergrid_batteries.gold_battery": "Gold Battery",
-  "block.powergrid_batteries.diamond_battery": "Diamond Battery",
-  "block.powergrid_batteries.netherite_battery": "Netherite Battery"
+  "block.powergrid_batteries.small_battery": "Small Battery",
+  "block.powergrid_batteries.medium_battery": "Medium Battery",
+  "block.powergrid_batteries.high_voltage_battery": "High-Voltage Battery",
+  "block.powergrid_batteries.substation_battery": "Power Grid Substation",
+  "gui.battery.info_header": "Battery Status",
+  "gui.battery.charge": "State of Charge:",
+  "gui.battery.voltage": "Output Voltage:",
+  "gui.battery.temperature": "Core Temperature:"
 }
