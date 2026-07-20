@@ -13,7 +13,7 @@ public class PowerGridBatteriesPonderPlugin implements PonderPlugin {
                 ModBlocks.MEDIUM_BATTERY.getId(),
                 ModBlocks.HIGH_VOLTAGE_BATTERY.getId(),
                 ModBlocks.SUBSTATION_BATTERY.getId()
-        ).addStoryBoard("battery", (scene, util) -> DeviceScenes.battery(scene, util));
+        ).addStoryBoard(ResourceLocation.fromNamespaceAndPath("powergrid", "battery"), (scene, util) -> DeviceScenes.battery(scene, util));
     }
 
     @Override

@@ -24,7 +24,13 @@ public class TieredBatteryBlock extends BatteryBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TieredBatteryBlockEntity(getBlockEntityType(), pos, state);
+        try {
+            return (BlockEntity) Class.forName("org.powergridbatteries.battery.TieredBatteryBlockEntity")
+                    .getConstructor(net.minecraft.world.level.block.entity.BlockEntityType.class, BlockPos.class, BlockState.class)
+                    .newInstance(getBlockEntityType(), pos, state);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load TieredBatteryBlockEntity via reflection", e);
+        }
     }
 
     @Override

@@ -7,8 +7,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.jetbrains.annotations.Nullable;
@@ -38,13 +38,22 @@ public class PowerGridBatteries {
 
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::addCreative);
-        modEventBus.addListener(this::loadComplete);
+    }
+
+    @net.neoforged.fml.common.EventBusSubscriber(modid = MOD_ID, bus = net.neoforged.fml.common.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @net.neoforged.bus.api.SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                PonderIndex.addPlugin(new PowerGridBatteriesPonderPlugin());
+                LOGGER.info("Registered PowerGridBatteries Ponder Plugin during FMLClientSetupEvent!");
+            });
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             try {
-                // Register Thermal Values Provider for PowerGrid's thermal dissipation & heat calculations
                 ThermalValues.register(new ThermalValues.Provider() {
                     @Override
                     public @Nullable DoubleSupplier getPower(Block block) {
@@ -65,7 +74,6 @@ public class PowerGridBatteries {
                     }
                 });
 
-                // Use Unsafe to mutate final validBlocks field in BlockEntityType
                 Field validBlocksField = BlockEntityType.class.getDeclaredField("validBlocks");
                 Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
                 unsafeField.setAccessible(true);
@@ -84,7 +92,6 @@ public class PowerGridBatteries {
 
                 unsafe.putObject(type, offset, newSet);
 
-                // Register Display Sources for Display Links
                 DisplaySource displaySource = ModdedDisplaySources.BATTERY.get();
                 DisplaySource.BY_BLOCK.add(ModBlocks.SMALL_BATTERY.get(), displaySource);
                 DisplaySource.BY_BLOCK.add(ModBlocks.MEDIUM_BATTERY.get(), displaySource);
@@ -105,14 +112,5 @@ public class PowerGridBatteries {
             event.accept(ModBlocks.HIGH_VOLTAGE_BATTERY.get());
             event.accept(ModBlocks.SUBSTATION_BATTERY.get());
         }
-    }
-
-    private void loadComplete(final FMLLoadCompleteEvent event) {
-        event.enqueueWork(() -> {
-            if (FMLEnvironment.dist == Dist.CLIENT) {
-                PonderIndex.addPlugin(new PowerGridBatteriesPonderPlugin());
-                LOGGER.info("Registered PowerGridBatteries Ponder Plugin safely during FMLLoadCompleteEvent!");
-            }
-        });
     }
 }

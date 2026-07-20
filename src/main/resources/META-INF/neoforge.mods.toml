@@ -1,7 +1,6 @@
 modLoader="javafml"
 loaderVersion="[4.0,)"
 license="MIT"
-issueTrackerURL="https://github.com/example/PowerGridBatteries/issues"
 
 [[mods]]
 modId="powergrid_batteries"
@@ -9,7 +8,7 @@ version="1.0.0"
 displayName="Create: Power Grid Batteries"
 authors="alebu"
 description='''
-An Add-on mod for Create: Power Grid introducing higher capacity tier batteries (Copper, Iron, Gold, Diamond, Netherite).
+An unofficial Add-on for Create: Power Grid introducing 4 tiered batteries (Small Battery, Medium Battery, High-Voltage Battery, and Power Grid Substation) with full Engineer's Goggles HUD support, Ponder scenes, and Display Links integration.
 '''
 
 [[dependencies.powergrid_batteries]]
