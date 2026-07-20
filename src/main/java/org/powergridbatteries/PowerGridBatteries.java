@@ -44,10 +44,10 @@ public class PowerGridBatteries {
     public static class ClientModEvents {
         @net.neoforged.bus.api.SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            org.powergridbatteries.battery.TieredBatteryCTBehaviour.init();
             event.enqueueWork(() -> {
                 PonderIndex.addPlugin(new PowerGridBatteriesPonderPlugin());
                 LOGGER.info("Registered PowerGridBatteries Ponder Plugin during FMLClientSetupEvent!");
-                org.powergridbatteries.battery.TieredBatteryCTBehaviour.init();
             });
         }
 
