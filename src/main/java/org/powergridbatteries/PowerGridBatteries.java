@@ -47,7 +47,24 @@ public class PowerGridBatteries {
             event.enqueueWork(() -> {
                 PonderIndex.addPlugin(new PowerGridBatteriesPonderPlugin());
                 LOGGER.info("Registered PowerGridBatteries Ponder Plugin during FMLClientSetupEvent!");
+                org.powergridbatteries.battery.TieredBatteryCTBehaviour.init();
             });
+        }
+
+        @net.neoforged.bus.api.SubscribeEvent
+        public static void onModelBaking(net.neoforged.neoforge.client.event.ModelEvent.ModifyBakingResult event) {
+            swapCT(event, ModBlocks.SMALL_BATTERY.getId(), new org.powergridbatteries.battery.TieredBatteryCTBehaviour("small"));
+            swapCT(event, ModBlocks.MEDIUM_BATTERY.getId(), new org.powergridbatteries.battery.TieredBatteryCTBehaviour("medium"));
+            swapCT(event, ModBlocks.HIGH_VOLTAGE_BATTERY.getId(), new org.powergridbatteries.battery.TieredBatteryCTBehaviour("high_voltage"));
+            swapCT(event, ModBlocks.SUBSTATION_BATTERY.getId(), new org.powergridbatteries.battery.TieredBatteryCTBehaviour("substation"));
+        }
+
+        private static void swapCT(net.neoforged.neoforge.client.event.ModelEvent.ModifyBakingResult event, net.minecraft.resources.ResourceLocation id, org.powergridbatteries.battery.TieredBatteryCTBehaviour behaviour) {
+            net.minecraft.client.resources.model.ModelResourceLocation blockStateLoc = new net.minecraft.client.resources.model.ModelResourceLocation(id, "");
+            net.minecraft.client.resources.model.BakedModel original = event.getModels().get(blockStateLoc);
+            if (original != null) {
+                event.getModels().put(blockStateLoc, new com.simibubi.create.foundation.block.connected.CTModel(original, behaviour));
+            }
         }
     }
 

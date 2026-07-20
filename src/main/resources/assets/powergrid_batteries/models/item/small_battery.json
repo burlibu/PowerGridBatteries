@@ -1,1 +1,3 @@
-{ "parent": "powergrid_batteries:block/small_battery" }
+{
+  "parent": "powergrid_batteries:block/small_battery"
+}

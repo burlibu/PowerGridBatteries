@@ -1,1 +1,7 @@
-{ "parent": "minecraft:block/cube_column", "textures": { "end": "minecraft:block/netherite_block", "side": "powergrid:block/battery/battery_side" } }
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "powergrid_batteries:block/battery/substation_battery_top",
+    "side": "powergrid_batteries:block/battery/substation_battery_side"
+  }
+}

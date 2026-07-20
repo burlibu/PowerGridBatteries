@@ -1,1 +1,7 @@
-{ "variants": { "": { "model": "powergrid_batteries:block/substation_battery" } } }
+{
+  "variants": {
+    "": {
+      "model": "powergrid_batteries:block/substation_battery"
+    }
+  }
+}

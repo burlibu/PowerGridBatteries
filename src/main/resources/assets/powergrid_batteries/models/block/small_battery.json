@@ -1,1 +1,7 @@
-{ "parent": "minecraft:block/cube_column", "textures": { "end": "minecraft:block/copper_block", "side": "powergrid:block/battery/battery_side" } }
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "powergrid_batteries:block/battery/small_battery_top",
+    "side": "powergrid_batteries:block/battery/small_battery_side"
+  }
+}

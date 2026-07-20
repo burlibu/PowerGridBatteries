@@ -24,8 +24,8 @@ public class TieredBatteryBlockEntity extends MultiBlockBatteryEntity implements
         Lang.builder().translate("gui.battery.info_header").forGoggles(tooltip);
 
         // Charge % & Energy
-        double totalEnergy = controllerBE.getIndividualEnergy() * controllerBE.getSize();
-        double totalCapacity = controllerBE.capacity * controllerBE.getSize();
+        double totalEnergy = controllerBE.getEnergy();
+        double totalCapacity = controllerBE.capacity;
         float percent = (float) (totalEnergy / Math.max(1.0, totalCapacity) * 100.0);
 
         Lang.builder().translate("gui.battery.charge")

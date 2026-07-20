@@ -18,6 +18,6 @@ public class PowerGridBatteriesPonderPlugin implements PonderPlugin {
 
     @Override
     public String getModId() {
-        return PowerGridBatteries.MOD_ID;
+        return "powergrid";
     }
 }
