@@ -1,0 +1,110 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+tasks.named('wrapper', Wrapper) {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+    maven { url = "https://maven.parchmentmc.org" }
+    maven { url = "https://maven.neoforged.net/releases" }
+    maven { url = "https://mvn.devos.one/releases" }
+    maven { url = "https://mvn.devos.one/snapshots" }
+    maven { url = "https://modmaven.dev/" }
+    maven { url = "https://maven.architectury.dev" }
+    maven { url = "https://maven.shedaniel.me" }
+    maven { url = "https://maven.tterrag.com/" }
+    maven {
+        url = "https://maven.createmod.net"
+        content {
+            includeGroupAndSubgroups("net.createmod")
+            includeGroupAndSubgroups("dev.engine-room")
+            includeGroupAndSubgroups("com.simibubi")
+        }
+    }
+    flatDir {
+        dirs '../PowerGrid/forge/build/libs', '../PowerGrid/build/libs'
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+neoForge {
+    version = neoforge_version
+
+    parchment {
+        mappingsVersion = parchment_version
+        minecraftVersion = minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nolazy'
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.logging.console.level', 'debug'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive false }
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    implementation("dev.architectury:architectury-neoforge:${architectury_api_version}")
+
+    // PowerGrid dependency (local jar or fallback)
+    implementation(name: "powergrid-mc${minecraft_version}-${powergrid_version}")
+    compileOnly("org.ejml:ejml-core:0.44.0")
+    compileOnly("org.ejml:ejml-simple:0.44.0")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

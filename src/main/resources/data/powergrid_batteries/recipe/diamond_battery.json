@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": { "item": "powergrid_batteries:gold_battery" },
+    "D": { "tag": "c:gems/diamond" }
+  },
+  "pattern": [ "DDD", "DBD", "DDD" ],
+  "result": { "count": 1, "id": "powergrid_batteries:diamond_battery" }
+}

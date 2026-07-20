@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": { "item": "powergrid_batteries:iron_battery" },
+    "G": { "tag": "c:ingots/gold" }
+  },
+  "pattern": [ "GGG", "GBG", "GGG" ],
+  "result": { "count": 1, "id": "powergrid_batteries:gold_battery" }
+}
