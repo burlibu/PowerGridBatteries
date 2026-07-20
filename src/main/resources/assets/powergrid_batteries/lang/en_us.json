@@ -3,5 +3,9 @@
   "block.powergrid_batteries.medium_battery": "Medium Battery",
   "block.powergrid_batteries.high_voltage_battery": "High Voltage Battery",
   "block.powergrid_batteries.substation_battery": "Substation Battery",
-  "itemGroup.batteries_tab": "Tiered Batteries"
+  "itemGroup.powergrid_batteries": "Tiered Batteries",
+  "powergrid.gui.battery.info_header": "Battery Stats",
+  "powergrid.gui.battery.charge": "Charge",
+  "powergrid.gui.battery.voltage": "Voltage",
+  "powergrid.gui.battery.temperature": "Temperature"
 }
