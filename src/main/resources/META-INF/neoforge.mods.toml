@@ -4,9 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="powergrid_batteries"
-version="1.0.0"
+version="1.0.1"
 displayName="Create: Power Grid Batteries"
-authors="alebu"
+authors="burlibu"
 description='''
 An unofficial Add-on for Create: Power Grid introducing 4 tiered batteries (Small Battery, Medium Battery, High-Voltage Battery, and Power Grid Substation) with full Engineer's Goggles HUD support, Ponder scenes, and Display Links integration.
 '''
